@@ -1,0 +1,18 @@
+[Unit]
+Description=Goodsync Runner Service
+Wants=network.target
+After=network.target
+
+[Service]
+Type=simple
+User=goodsync
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=goodsync-runner
+ExecStart=/bin/gsync /runner /lf=/var/log/goodsync_runner /ll=3
+WorkingDirectory=/home/goodsync/.goodsync
+Restart=always
+
+
+[Install]
+WantedBy=multi-user.target
