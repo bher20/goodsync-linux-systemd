@@ -5,12 +5,12 @@ After=network.target
 
 [Service]
 Type=simple
-User=goodsync
+User=svc_goodsync
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=goodsync-runner
-ExecStart=/bin/gsync /runner /lf=/var/log/goodsync_runner /ll=3
-WorkingDirectory=/home/goodsync/.goodsync
+ExecStart=/bin/gsync /runner /lf=/var/log/goodsync_runner /ll=3 /copy-owner=yes /run-parallel-threads=yes /worker-threads=5
+WorkingDirectory=/home/svc_goodsync/.goodsync
 Restart=always
 
 
